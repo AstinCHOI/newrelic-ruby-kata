@@ -33,7 +33,7 @@ gem 'httparty'
 gem 'dalli'
 gem 'memcachier'
 # New Relic
-gem 'newrelic_rpm', '>=3.6.8'
+# gem 'newrelic_rpm'
 # Fast production server
 gem 'puma'
 
