@@ -19,7 +19,7 @@ development:
   database: newrelic-ruby-kata_development
   pool: 5
   username: <%= ENV['USER'] %>
-  password:
+  password: newrelic
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -47,5 +47,5 @@ test:
   database: newrelic-ruby-kata_test
   pool: 5
   username: <%= ENV['USER'] %>
-  password:
+  password: newrelic
   template: template0
