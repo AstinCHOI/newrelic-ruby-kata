@@ -24,7 +24,7 @@ WORKDIR /home/newrelic-ruby-kata
 RUN bundle install
 
 # For newrelic infra: https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/linux-installation/docker-container-infrastructure-monitoring/#custom-setup
-# ADD newrelic-infra.yml /etc/newrelic-infra.yml
+ADD newrelic-infra.yml /etc/newrelic-infra.yml
 
 ##
 EXPOSE 3000
