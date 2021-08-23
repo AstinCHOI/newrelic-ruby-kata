@@ -3,18 +3,24 @@ version: '3.2'
 services:
   agent:
     container_name: newrelic-infra
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    image: asciineo/newrelic-ruby-kata
     cap_add:
       - SYS_PTRACE
     network_mode: host
     pid: host
     privileged: true
+    ports:
+      - "3000:3000"
     volumes:
       - type: bind
         source: /home/ubuntu/logs
         target: /home/newrelic-ruby-kata/log
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    restart: always
+
+# https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/enable-log-monitoring-new-relic/forward-your-logs-using-infrastructure-agent/
+# vim /etc/newrelic-infra/logging.d/logging.yml
