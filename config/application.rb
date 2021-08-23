@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'newrelic_rpm'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,5 +23,8 @@ module NewrelicRubyKata
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # https://docs.newrelic.com/docs/logs/enable-log-management-new-relic/logs-context-ruby/configure-logs-context-ruby/#enable-logs-ruby
+    config.log_formatter = ::NewRelic::Agent::Logging::DecoratingFormatter.new
   end
 end
