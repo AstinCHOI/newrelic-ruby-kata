@@ -1,11 +1,8 @@
-version: '3.2'
-
+version: '3.8'
 services:
-  newrelic-ruby-kata:
+  agent:
     container_name: newrelic-infra
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: newrelic/infrastructure:latest
     cap_add:
       - SYS_PTRACE
     network_mode: host
@@ -17,4 +14,6 @@ services:
         target: /home/newrelic-ruby-kata/log
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      NRIA_LICENSE_KEY: "YOUR_LICENSE_KEY"
     restart: unless-stopped
