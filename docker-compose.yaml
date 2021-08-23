@@ -1,32 +1,20 @@
 version: '3.2'
 
 services:
-  # ruby-kata:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - NEW_RELIC_LICENSE_KEY=your_license_key
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - type: bind
-  #       source: /home/ubuntu/logs
-  #       target: /home/newrelic-ruby-kata/log
-  #   tty: true
-  #   stdin_open: true
-  #   restart: always
-  agent:
+  newrelic-ruby-kata:
     container_name: newrelic-infra
     build:
       context: .
-      dockerfile: newrelic-infra.dockerfile
+      dockerfile: Dockerfile
     cap_add:
       - SYS_PTRACE
     network_mode: host
     pid: host
     privileged: true
     volumes:
+      - type: bind
+        source: /home/ubuntu/logs
+        target: /home/newrelic-ruby-kata/log
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
     restart: unless-stopped
